@@ -22,15 +22,44 @@ AngularBaseGenerator.prototype.askFor = function askFor() {
   // have Yeoman greet the user.
   console.log(this.yeoman);
 
-  var prompts = [{
-    type: 'confirm',
-    name: 'someOption',
-    message: 'Would you like to enable this option?',
-    default: true
-  }];
+    var prompts = [{
+        type: 'confirm',
+        name: 'someOption',
+        message: 'Yo bro! Would you like to enable this option?',
+        default: true
+    },
+    {
+        name: 'moduleName',
+        message: 'What do you want to name this awesome app/site?'
+    },
+    {
+        name: 'authorName',
+        message: 'What is your name?'
+    },
+    {
+        name: "authorURL",
+        message: "What is the site where the author can be reached?",
+        default: "http://reactorio.github.io"
+    },
+    {
+        name: "description",
+        message: "Give me a description for your app/site",
+        default: "A sample description"
+    },
 
-  this.prompt(prompts, function (props) {
+  ];
+
+  this.prompt(prompts, function (err, props) {
+
+    if (err) {
+        return this.emit('error', err);
+    }
+
     this.someOption = props.someOption;
+    this.moduleName = props.moduleName;
+    this.authorName = props.authorName;
+    this.authorURL = props.authorURL;
+    this.description = props.description;
 
     cb();
   }.bind(this));
