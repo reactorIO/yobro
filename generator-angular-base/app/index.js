@@ -34,7 +34,8 @@ AngularBaseGenerator.prototype.askFor = function askFor() {
     },
     {
         name: 'authorName',
-        message: 'What is your name?'
+        message: 'What is your name?',
+        default: "Evo"
     },
     {
         name: "authorURL",
@@ -49,11 +50,7 @@ AngularBaseGenerator.prototype.askFor = function askFor() {
 
   ];
 
-  this.prompt(prompts, function (err, props) {
-
-    if (err) {
-        return this.emit('error', err);
-    }
+  this.prompt(prompts, function (props) {
 
     this.someOption = props.someOption;
     this.moduleName = props.moduleName;
